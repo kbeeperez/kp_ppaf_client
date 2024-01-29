@@ -1,0 +1,10 @@
+.logo {
+    margin-top:.25rem;
+}
+
+.logo h1{
+    margin:0;
+    padding:0;
+    color:purple;
+    padding-left: 1rem;
+}
