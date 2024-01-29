@@ -5,8 +5,11 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import "./assets/styles/index.css";
 import '@mantine/core/styles.css';
 import { MantineProvider, createTheme } from '@mantine/core';
-
 import Landing from './components/Landing.jsx';
+import Authentication from './components/Authentication.jsx';
+import axios from 'axios';
+
+axios.defaults.baseURL="http://127.0.0.1:8000"
 
 const theme = createTheme({
   /** Your theme override here */
@@ -21,6 +24,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Landing/>,
+      },
+      {
+        path: "/auth/",
+        element: <Authentication/>,
+      },
+      {
+        path: "/auth/create",
+        element: <Authentication signin='register'/>,
       },
     ],
   },

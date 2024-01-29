@@ -1,15 +1,21 @@
 import { Button, Container } from "@mantine/core"
+import Hero from "./Hero"
 
-export default function Landing(){
-    if(localStorage.getItem("token")){
-        return(<h1>My Documents</h1>)
+export default function Landing() {
+    if (localStorage.getItem("token")) {
+        return (<h1>My Documents</h1>)
     } else {
-        return(
-        <div className=""><Container>
-            <h1>Privacy Policy Analysis Framework</h1>
-            <p>Empowering intelligent privacy policy understanding and documentation...</p>
-
-            <Button>Get Started</Button>
-        </Container></div>)
+        return (
+            <><Hero>
+                <Container size="lg">
+                    <h1>Intelligent Privacy Policy Comprehension and Analysis</h1>
+                </Container>
+            </Hero>
+            <Container size="lg">
+                <p>Empowering intelligent privacy policy understanding and documentation...</p>
+                <Button>Get Started</Button>
+            </Container>
+            </>
+        )
     }
 }

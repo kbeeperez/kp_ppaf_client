@@ -1,32 +1,18 @@
 import { useState } from 'react'
 import { AppShell, Burger } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { Outlet } from "react-router-dom";
+import { useDisclosure, useForceUpdate } from '@mantine/hooks';
+import { Outlet, useOutletContext } from "react-router-dom";
+import Landing from './components/Landing';
+import Header from './components/Header';
 
 export default function Root() {
-  const [opened, { toggle }] = useDisclosure();
+  let forceRefresh = useForceUpdate()
   const signedIn=localStorage.getItem("token")
 
   return (
-    <AppShell
-      header={{ height: 60 }}
-      padding="md"
-    >
-      <AppShell.Header>
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          hiddenFrom="sm"
-          size="sm"
-        />
-        <div className='logo'><h1>PPAF @ LSU</h1></div>
-      </AppShell.Header>
-
-      {signedIn && (
-      <AppShell.Navbar></AppShell.Navbar>
-      )}
-
-      <AppShell.Main><Outlet/></AppShell.Main>
-    </AppShell>
-  );
+    <>
+      <Header signedIn={signedIn}/>
+      <Outlet context={forceRefresh}/>
+    </>
+  )
 }
