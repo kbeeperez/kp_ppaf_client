@@ -8,6 +8,7 @@ import { MantineProvider, createTheme } from '@mantine/core';
 import Landing from './components/Landing.jsx';
 import Authentication from './components/Authentication.jsx';
 import axios from 'axios';
+import LogOut from './components/LogOut.jsx';
 
 axios.defaults.baseURL="http://127.0.0.1:8000"
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/auth/create",
         element: <Authentication signin='register'/>,
+      },
+      {
+        path: "/auth/out",
+        element: <LogOut/>,
       },
     ],
   },

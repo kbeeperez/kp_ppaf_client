@@ -7,3 +7,19 @@
     padding:0;
     color:purple;
 }
+
+.flex {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    flex-flow: row nowrap;
+}
+
+.row {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.flex > :nth-child(2) {
+    flex:1;
+}

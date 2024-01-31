@@ -1,9 +1,26 @@
-import { Button, Container } from "@mantine/core"
+import { Button, Container, Grid } from "@mantine/core"
 import Hero from "./Hero"
+import DocumentStatsCard from "./DocumentStatsCard"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 export default function Landing() {
     if (localStorage.getItem("token")) {
-        return (<h1>My Documents</h1>)
+        let [recentDocuments, setRecentDocuments] = useState([])
+
+        useEffect(()=>{
+            axios.get("/document/", ).then((res)=>{
+                setRecentDocuments(res.data)
+            })
+        }, [])
+
+        return (
+        <Container size="lg">
+            <h1>Recent Documents</h1>
+            <Grid>
+                {recentDocuments.map((item)=>{return <Grid.Col span={{ base: 12, xs: 4 }}><DocumentStatsCard data={item}/></Grid.Col>})}
+            </Grid>
+        </Container>)
     } else {
         return (
             <><Hero>

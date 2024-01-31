@@ -1,0 +1,90 @@
+import { Card, Image, Text, Group, RingProgress, useMantineTheme } from '@mantine/core';
+import classes from '../assets/styles/DocumentStatsCard.module.css';
+import { useEffect, useId, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import WordCloud from "wordcloud"
+
+export default function DocumentStatsCard({data}) {
+    let [content, setContent] = useState("")
+    let [analyses, setAnalyses] = useState([])
+
+    let canvasId = useId()
+    let theme = useMantineTheme()
+    
+    useEffect(()=>{
+        axios.get("/document/"+data.id).then((res)=>{
+            setContent(res.data.contents)
+        })
+
+        axios.get("/document/"+data.id+"/analyses").then((res)=>{
+            setAnalyses(res.data)
+        })
+
+        const list = [["foo", 30], ["Micro$haft", 50], ["Steal", 50], ["Violate", 37], ["Base R Belong to US", 15]]
+        WordCloud(document.getElementById(canvasId), { list: list, color: ()=>{return theme.colors.cyan[parseInt(Math.random()*5+5)]}, backgroundColor: theme.colors.gray[3]  } );
+    },[])
+
+    const baseAnalysis = analyses.find((analysis)=>{return analysis.kind == "BASE"})
+
+    const stats = [
+        { title: 'Word Count', value: content.split(" ").length + " words" },
+        { title: 'Privacy Friendliness Score', value: '88/100' },
+    ];
+
+    const items = stats.map((stat) => (
+        <div key={stat.title}>
+            <Text size="xs" color="dimmed">
+                {stat.title}
+            </Text>
+            <Text fw={500} size="sm">
+                {stat.value}
+            </Text>
+        </div>
+    ));
+
+    return (
+        <Link to={"/documents/"+data.id} className={classes.link}>
+        <Card withBorder padding="lg" className={classes.card}>
+            <Card.Section>
+                <canvas
+                    className={classes.canvas}
+                    height={200}
+                    id={canvasId}
+                />
+            </Card.Section>
+
+            <Group justify="space-between" mt="xl">
+                <Text fz="sm" fw={700} className={classes.title}>
+                    {data.title}
+                </Text>
+                <Group gap={5}>
+                    <Text fz="xs" c="dimmed">
+                        Analysis {!!baseAnalysis && (
+                            baseAnalysis.state
+                        )}{!!!baseAnalysis && (
+                            "Pending"
+                        )}
+                    </Text>
+                    {!!baseAnalysis && ((baseAnalysis.state == "Complete" && (
+                            <RingProgress size={18} thickness={2} sections={[{ value: 100, color: 'green' }]} />
+                        )) || (baseAnalysis.state == "Failed" && (
+                            <RingProgress size={18} thickness={2} sections={[{ value: 100, color: 'red' }]} />
+                        )) || (baseAnalysis.state == "In Progress" && (
+                            <RingProgress size={18} thickness={2} sections={[{ value: 50, color: 'yellow' }]} />
+                        )) (baseAnalysis.state == "Pending" && (
+                            <RingProgress size={18} thickness={2} sections={[{ value: 0, color: 'yellow' }]} />
+                        )))}
+                        {!!!baseAnalysis && (
+                            <RingProgress size={18} thickness={2} sections={[{ value: 0, color: 'red' }]} />
+                        )}
+                </Group>
+            </Group>
+            <Text mt="sm" mb="md" c="dimmed" fz="xs">
+                {/*56 km this month • 17% improvement compared to last month • 443 place in global scoreboard*/}
+            </Text>
+            <Card.Section className={classes.footer}>{items}</Card.Section>
+        </Card>
+        </Link>
+    );
+}
