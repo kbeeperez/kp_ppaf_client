@@ -8,6 +8,8 @@ import WordCloud from "wordcloud"
 export default function DocumentStatsCard({data}) {
     let [content, setContent] = useState("")
     let [analyses, setAnalyses] = useState([])
+    let [baseAnalysis, setBaseAnalysis] = useState(null)
+    let [baseAnalysisContent, setBaseAnalysisContent] = useState(undefined)
 
     let canvasId = useId()
     let theme = useMantineTheme()
@@ -25,11 +27,24 @@ export default function DocumentStatsCard({data}) {
         WordCloud(document.getElementById(canvasId), { list: list, color: ()=>{return theme.colors.cyan[parseInt(Math.random()*5+5)]}, backgroundColor: theme.colors.gray[3]  } );
     },[])
 
-    const baseAnalysis = analyses.find((analysis)=>{return analysis.kind == "BASE"})
+    useEffect(()=>{
+        let base = analyses.find((item)=>{return item.kind == "BASE"})
+
+        setBaseAnalysis(base)
+
+        if (base?.state == "Complete") {
+            axios.get("/analysis/singular/"+base.id).then((res)=>{
+                let contents = JSON.parse(res.data.contents)
+                setBaseAnalysisContent(contents)
+                let scopes = contents.scopes.map((scope)=>{return [scope, 20]})
+                WordCloud(document.getElementById(canvasId), { list: scopes, color: ()=>{return theme.colors.cyan[parseInt(Math.random()*5+5)]}, backgroundColor: theme.colors.gray[3]  } );
+            })
+        }
+    }, [analyses])
 
     const stats = [
         { title: 'Word Count', value: content.split(" ").length + " words" },
-        { title: 'Privacy Friendliness Score', value: '88/100' },
+        { title: 'Privacy Friendliness Score', value: baseAnalysisContent?.score+'/100' },
     ];
 
     const items = stats.map((stat) => (
@@ -72,7 +87,7 @@ export default function DocumentStatsCard({data}) {
                             <RingProgress size={18} thickness={2} sections={[{ value: 100, color: 'red' }]} />
                         )) || (baseAnalysis.state == "In Progress" && (
                             <RingProgress size={18} thickness={2} sections={[{ value: 50, color: 'yellow' }]} />
-                        )) (baseAnalysis.state == "Pending" && (
+                        )) || (baseAnalysis.state == "Pending" && (
                             <RingProgress size={18} thickness={2} sections={[{ value: 0, color: 'yellow' }]} />
                         )))}
                         {!!!baseAnalysis && (

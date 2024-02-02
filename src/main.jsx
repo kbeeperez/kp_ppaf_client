@@ -9,6 +9,8 @@ import Landing from './components/Landing.jsx';
 import Authentication from './components/Authentication.jsx';
 import axios from 'axios';
 import LogOut from './components/LogOut.jsx';
+import Document from './components/Document.jsx';
+import DocumentList from './components/DocumentList.jsx';
 
 axios.defaults.baseURL="http://127.0.0.1:8000"
 
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Landing/>,
+      },
+      {
+        path: "/documents",
+        element: <DocumentList/>,
+      },
+      {
+        path: "/documents/:id",
+        element: <Document/>,
       },
       {
         path: "/auth/",
