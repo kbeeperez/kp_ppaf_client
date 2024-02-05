@@ -5,27 +5,21 @@ import classes from '../assets/styles/Header.module.css';
 import { Link } from 'react-router-dom';
 import { Code } from '@mantine/core';
 import {
-    IconBellRinging,
-    IconFingerprint,
-    IconKey,
-    IconSettings,
-    Icon2fa,
-    IconDatabaseImport,
-    IconReceipt2,
-    IconSwitchHorizontal,
     IconLogout,
+    IconSphere,
+    IconFileText,
+    IconSearch,
 } from '@tabler/icons-react';
 import navclasses from '../assets/styles/Navbar.module.css';
 
 const data = [
-    { link: '/', label: 'Overview', icon: IconBellRinging },
-    { link: '/documents', label: 'Documents', icon: IconBellRinging },
-    { link: '/analyses', label: 'Analyses', icon: IconReceipt2 }
+    { link: '/', label: 'Overview', icon: IconSphere},
+    { link: '/documents', label: 'Documents', icon: IconFileText },
+    { link: '/analyses', label: 'Analyses', icon: IconSearch }
 ];
 
 export default function Header({ signedIn }) {
     const theme = useMantineTheme();
-
     const [active, setActive] = useState('Overview');
 
     const links = data.map((item) => (
@@ -52,11 +46,6 @@ export default function Header({ signedIn }) {
                     </div>
 
                     <div className={navclasses.footer}>
-                        <a href="#" className={navclasses.link} onClick={(event) => event.preventDefault()}>
-                            <IconSwitchHorizontal className={navclasses.linkIcon} stroke={1.5} />
-                            <span>Change account</span>
-                        </a>
-
                         <Link to="/auth/out" className={navclasses.link}>
                             <IconLogout className={navclasses.linkIcon} stroke={1.5} />
                             <span>Logout</span>
