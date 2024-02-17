@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Group, Burger, useMantineTheme, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import classes from '../assets/styles/Header.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Code } from '@mantine/core';
 import {
     IconLogout,
@@ -21,6 +21,15 @@ const data = [
 export default function Header({ signedIn }) {
     const theme = useMantineTheme();
     const [active, setActive] = useState('Overview');
+    const { pathname } = useLocation();
+
+    useEffect(()=>{
+        if (location.href.includes("document")){
+            setActive("Documents")
+        } else if (location.href.includes("")){
+            setActive("Overview")
+        }
+    }, [pathname])
 
     const links = data.map((item) => (
         <Link

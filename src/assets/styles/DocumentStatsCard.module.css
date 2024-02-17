@@ -4,6 +4,7 @@
 
 .card {
   background-color: var(--mantine-color-body);
+  position: relative;
 }
 
 .footer {
@@ -23,4 +24,16 @@
 .canvas{
   width:100%;
   background-color: #ccc;
+}
+
+.menu{
+  position:absolute;
+  right:10px;
+  top:10px;
+}
+
+.dots{
+  position:absolute;
+  right:10px;
+  top:10px;
 }

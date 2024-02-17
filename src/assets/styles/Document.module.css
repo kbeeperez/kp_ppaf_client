@@ -1,0 +1,15 @@
+.document{
+    position: relative;
+}
+
+.menu{
+    position:absolute;
+    right:10px;
+    top:10px;
+  }
+
+.dots{
+position:absolute;
+right:10px;
+top:10px;
+}
