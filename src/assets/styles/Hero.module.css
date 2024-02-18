@@ -1,7 +1,7 @@
 .background {
     margin:1em;
-    background-image: url("https://img.freepik.com/free-vector/modern-design-with-connecting-lines-dots_1048-11911.jpg?w=1380&t=st=1706554358~exp=1706554958~hmac=b87c5e3239a5792c7138ef31f6f1989356278f93fef8c0ae5b315da92373e512");
-    background-size: 100% auto;
+    background-size: 100% 100%;
+    background-repeat: none;
     background-position: center;
     border-radius: 1rem;
     background-blend-mode: color-dodge;
@@ -16,5 +16,6 @@
     padding-top:1em;
     padding-bottom: 1em;
     border-radius: 1rem;
+    background-color: #00000033;
     backdrop-filter: blur(3px) grayscale(50%);
 }
