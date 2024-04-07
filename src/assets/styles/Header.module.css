@@ -6,6 +6,7 @@
 }
 
 .inner {
+    background-color: white;
     height: rem(56px);
     display: flex;
     justify-content: space-between;

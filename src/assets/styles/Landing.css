@@ -1,0 +1,32 @@
+.main-con {
+    position: relative;
+    height:900px;
+    width:100%;
+    margin: 0;
+    margin-top:-14px; /* cover the header bit */
+    z-index: -1;
+}
+
+.top-middle {
+    position:absolute;
+    top:100px;
+    left: 30px;
+    z-index: 30;
+    font-size: 50pt;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
+
+
+.login {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    z-index: 2;
+    top: 20%;
+    left: 70%;
+
+}
+
+

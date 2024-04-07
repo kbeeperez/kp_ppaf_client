@@ -11,6 +11,9 @@ import {
     IconSearch,
 } from '@tabler/icons-react';
 import navclasses from '../assets/styles/Navbar.module.css';
+import "../assets/styles/Footer.css"
+import PPAF from '../components/ppaf-logo.png';
+import Footer from "./Footer";
 
 const data = [
     { link: '/', label: 'Overview', icon: IconSphere},
@@ -48,7 +51,7 @@ export default function Header({ signedIn }) {
                 <nav className={navclasses.navbar}>
                     <div className={navclasses.navbarMain}>
                         <Group className={navclasses.header} justify="space-between">
-                            <div className='logo'><h1>PPAF @ LSU</h1></div>
+                            <Link to="/"><div><img src={PPAF} className={navclasses.logo2}/></div></Link>
                             <Code fw={700}>v3.1.2</Code>
                         </Group>
                         {links}
@@ -64,8 +67,8 @@ export default function Header({ signedIn }) {
             )}
             {!!!signedIn && (
                 <header className={classes.header}>
-                    <Container size="lg" className={classes.inner}>
-                        <Link to="/"><div className='logo'><h1>PPAF @ LSU</h1></div></Link>
+                    <Container fluid className={classes.inner}>
+                        <Link to="/"><div><img src={PPAF} className={navclasses.logo}/></div></Link>
                         <Group visibleFrom="sm">
                             {signedIn && (<>
                                 <Button variant="default" component={Link} to="/documents">Policies</Button>
