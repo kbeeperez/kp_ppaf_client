@@ -23,3 +23,11 @@
 .flex > :nth-child(2) {
     flex:1;
 }
+
+.auth-background {
+    height: 885px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-image: url("../../components/log-in-bg.jpg");
+    background-size: cover;
+    background-position: bottom;
+}

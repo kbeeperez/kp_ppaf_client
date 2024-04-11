@@ -59,7 +59,7 @@ export default function DocumentList() {
                     onChange={(e)=>setUrl(e.target.value)}
                     placeholder="https://privacy.policies.matter"
                     rightSection={<Button type="submit">Analyze</Button>}
-                    rightSectionWidth={87}
+                    rightSectionWidth={90}
                     />
                     </Container>
                     </Form>

@@ -10,6 +10,9 @@ export default function AboutUs() {
             
             <div align="center">
             <Container className="main-info" >
+                {/*TO-DO:
+                - add links to socials is applicable 
+                */}
                 <Group ml={"40%"} pt={"50px"}>
                     <IconBrandInstagram size={40} strokeWidth={1.5} color="white"/>
                     <Divider orientation="vertical" size="md" color="white"/>
@@ -17,7 +20,12 @@ export default function AboutUs() {
                     <Divider orientation="vertical" size="md" color="white"/>
                     <a href="https://github.com/JustinWoodring/ppaf_client/tree/main" target="_blank"><IconBrandGithub size={40} strokeWidth={1.5} color="white"/></a>
                 </Group>
-                <Group ml={"30%"}>
+                {/*TO-DO:
+                - add links to privacy policy
+                - terms of us
+                - any documentation written/or route it to github README page 
+                */}
+                <Group ml={"30%"}> 
                     <h4 className="end-text">How does it work?</h4>
                     <h4 className="end-text">Terms of Use</h4>
                     <h4 className="end-text">Privacy Policy</h4>

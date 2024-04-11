@@ -43,11 +43,13 @@ export default function Landing() {
                 <ScrollArea h={830}>
 
                 <div>
+                    {/*TO-DO:
+                    - more pcitures?
+                    - add overlay for text
+                    - either have diffrent text on each image or sliding/changing text 
+                    */}
 
                      <BackgroundSlideshow images={gallery} duration={2}/>
-                     <div className="login" style={{background: "pink"}}>
-                     </div>
-
                     
                 </div>
                 </ScrollArea>

@@ -16,6 +16,7 @@ import {
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useOutletContext } from 'react-router-dom';
+import '../assets/styles/index.css';
 
 export default function Authentication({ paperProps, signin = "login"}) {
   const forceRefresh = useOutletContext();
@@ -63,9 +64,10 @@ export default function Authentication({ paperProps, signin = "login"}) {
   });
 
   return (
-    <Container size="xs">
+  <div className="auth-background">
+    <Container size="xs" pt={65}>
       <Paper radius="md" p="xl" withBorder {...paperProps}>
-        <Text size="lg" fw={500}>
+        <Text size="20pt" fw={600} style={{textAlign:"center"}}>
           {upperFirst(type)} with email
         </Text>
 
@@ -96,7 +98,7 @@ export default function Authentication({ paperProps, signin = "login"}) {
             <PasswordInput
               required
               label="Password"
-              placeholder="Your password"
+              placeholder="Password"
               value={form.values.password}
               onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
               error={form.errors.password && 'Password should include at least 6 characters'}
@@ -114,7 +116,7 @@ export default function Authentication({ paperProps, signin = "login"}) {
           </Stack>
 
           <Group justify="space-between" mt="xl">
-            <Anchor component="button" type="button" c="dimmed" onClick={() => toggle()} size="xs">
+            <Anchor component="button" type="button" c="#228be6" onClick={() => toggle()} size="xs">
               {type === 'register'
                 ? 'Already have an account? Login'
                 : "Don't have an account? Register"}
@@ -126,5 +128,6 @@ export default function Authentication({ paperProps, signin = "login"}) {
         </form>
       </Paper>
     </Container>
+  </div>
   );
 }
