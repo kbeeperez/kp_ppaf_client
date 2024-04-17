@@ -64,7 +64,7 @@ export default function DocumentList() {
                     </Container>
                     </Form>
                 </Container>
-                <Title order={2} py="md" c="dimmed">{user?.name}'s Documents</Title>
+                <Title order={2} py="md" c="black">{user?.name}'s Documents</Title>
                 <Grid>
                     {documents.length >= 1 ? documents.map((item) => { return <GridCol span={{ base: 12, xs: 4 }}><DocumentStatsCard data={item} refreshHandler={toggle}/></GridCol> }) : (<GridCol span={{ base: 12, xs: 12 }}><Paper withBorder p="sm"><Text fz="xl" c="dimmed">It's lonely in here... <IconMoodSad style={{verticalAlign: "bottom"}}/></Text><Text fz="md" c="dimmed">Add a new document to get started</Text></Paper></GridCol>)}
                 </Grid>

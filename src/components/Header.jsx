@@ -13,7 +13,6 @@ import {
 import navclasses from '../assets/styles/Navbar.module.css';
 import "../assets/styles/Footer.css"
 import PPAF from '../components/ppaf-logo.png';
-import Footer from "./Footer";
 
 const data = [
     { link: '/', label: 'Overview', icon: IconSphere},
@@ -46,7 +45,7 @@ export default function Header({ signedIn }) {
         </Link>));
 
     return (
-        <>
+        <> {/* home page side-navbar */}
             {!!signedIn && (
                 <nav className={navclasses.navbar}>
                     <div className={navclasses.navbarMain}>
@@ -56,7 +55,8 @@ export default function Header({ signedIn }) {
                         </Group>
                         {links}
                     </div>
-
+                    
+                    {/* logout */}
                     <div className={navclasses.footer}>
                         <Link to="/auth/out" className={navclasses.link}>
                             <IconLogout className={navclasses.linkIcon} stroke={1.5} />
@@ -64,7 +64,7 @@ export default function Header({ signedIn }) {
                         </Link>
                     </div>
                 </nav>
-            )}
+            )} {/* landing page navbar */}
             {!!!signedIn && (
                 <header className={classes.header}>
                     <Container fluid className={classes.inner}>

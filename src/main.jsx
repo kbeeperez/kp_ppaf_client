@@ -11,6 +11,7 @@ import axios from 'axios';
 import LogOut from './components/LogOut.jsx';
 import Document from './components/Document.jsx';
 import DocumentList from './components/DocumentList.jsx';
+import Analyses from './components/Analyses.jsx'
 
 axios.defaults.baseURL="http://127.0.0.1:8000"
 
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
       {
         path: "/documents/:id",
         element: <Document/>,
+      },
+      {
+        path: "/analyses",
+        element: <Analyses/>,
+
       },
       {
         path: "/auth/",

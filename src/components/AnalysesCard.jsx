@@ -1,20 +1,20 @@
-import { Card, Image, Text, Group, RingProgress, useMantineTheme, Menu, MenuTarget, MenuDropdown, MenuItem, rem, Button, Stack } from '@mantine/core';
+import { Card, Image, Text, Group, RingProgress, useMantineTheme, Menu, MenuTarget, MenuDropdown, MenuItem, rem, Stack, Button, CardSection } from '@mantine/core';
 import classes from '../assets/styles/DocumentStatsCard.module.css';
 import { useEffect, useId, useState } from 'react';
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import WordCloud from "wordcloud"
 import { IconDotsVertical, IconTrash } from '@tabler/icons-react';
-import { useInterval, useToggle } from '@mantine/hooks';
+import { useInterval, useLocalStorage, useToggle } from '@mantine/hooks';
+import "../assets/styles/Analyses.css"
 
-export default function DocumentStatsCard({data, refreshHandler, onSelect}) {
-    const location = useLocation(); {/* gets pathname to check page */}
+export default function AnalysesCard({data, refreshHandler, onSelect}) {
     let [content, setContent] = useState("")
     let [analyses, setAnalyses] = useState([])
     let [baseAnalysis, setBaseAnalysis] = useState(null)
     let [baseAnalysisContent, setBaseAnalysisContent] = useState(undefined)
 
-    let canvasId = useId()
+
     let theme = useMantineTheme()
 
     let [toggleState, toggle] = useToggle();
@@ -29,8 +29,6 @@ export default function DocumentStatsCard({data, refreshHandler, onSelect}) {
             setContent(res.data.contents)
         })
 
-        const list = [["N/A", 30]]
-        WordCloud(document.getElementById(canvasId), { list: list, color: ()=>{return theme.colors.gray[parseInt(Math.random()*5*5)]}, backgroundColor: theme.colors.gray[2]  } );
     },[])
 
     useEffect(()=>{
@@ -75,36 +73,12 @@ export default function DocumentStatsCard({data, refreshHandler, onSelect}) {
         axios.delete("/document/"+data.id).then((res)=>{refreshHandler()})
     }
 
-    return (
-        <Link to={"/documents/"+data.id} className={classes.link}>
-        <Card withBorder padding="lg" className={classes.card} shadow='xs'>
-            <Card.Section>
-                <canvas
-                    className={classes.canvas}
-                    height={200}
-                    id={canvasId}
-                />
-                <Menu classes={classes.menu} shadow="md" width={100} trigger="hover" onClick={(e)=>e.preventDefault()}>
-                    <MenuTarget>
-                        <IconDotsVertical className={classes.dots}/>
-                    </MenuTarget>
-                    <MenuDropdown>
-                        <MenuItem
-                        color="red"
-                        leftSection={<IconTrash style={{ width: rem(14), height: rem(14) }} />}
-                        onClick={(e)=>{e.stopPropagation(); deleteCard()}}
-                        >
-                        Delete
-                        </MenuItem>
-                    </MenuDropdown>
-                </Menu>
 
-            {location.pathname == "/analyses" &&
-            <Stack align="center">
-            <Button radius={"xl"} className='button-select' onClick={(e)=>{e.preventDefault(); onSelect(data)}}>Select for analysis</Button>
-            </Stack>
-            }
-            </Card.Section>
+    return (
+        <Card withBorder padding="lg" className={classes.card} shadow='xs'>
+            <CardSection>
+                <canvas height={50} width={100}/>
+            </CardSection>
 
             <Group justify="space-between" mt="xl">
                 <Text fz="sm" fw={700} className={classes.title}>
@@ -135,8 +109,7 @@ export default function DocumentStatsCard({data, refreshHandler, onSelect}) {
             <Text mt="sm" mb="md" c="dimmed" fz="xs">
                 {/*56 km this month • 17% improvement compared to last month • 443 place in global scoreboard*/}
             </Text>
-            <Card.Section className={classes.footer}>{items}</Card.Section>
+             <Link to={"/documents/"+data.id} className={classes.link}><Card.Section className={classes.footer}>{items}</Card.Section></Link>
         </Card>
-        </Link>
     );
 }
