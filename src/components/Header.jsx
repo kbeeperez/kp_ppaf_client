@@ -28,7 +28,9 @@ export default function Header({ signedIn }) {
     useEffect(()=>{
         if (location.href.includes("document")){
             setActive("Documents")
-        } else if (location.href.includes("")){
+        } else if (location.href.includes("analyses")){
+            setActive("Analyses")
+        } else {
             setActive("Overview")
         }
     }, [pathname])

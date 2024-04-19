@@ -8,7 +8,7 @@ import { IconDotsVertical, IconTrash } from '@tabler/icons-react';
 import { useInterval, useToggle } from '@mantine/hooks';
 
 export default function DocumentStatsCard({data, refreshHandler, onSelect}) {
-    const location = useLocation(); {/* gets pathname to check page */}
+    const location = useLocation();
     let [content, setContent] = useState("")
     let [analyses, setAnalyses] = useState([])
     let [baseAnalysis, setBaseAnalysis] = useState(null)
