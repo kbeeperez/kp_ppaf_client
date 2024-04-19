@@ -4,11 +4,15 @@
 }
 
 .text-title {
-    font-size: 14pt;
+    font-size: 15pt;
 }
 
 .button-select {
     margin-bottom: -20px;
     margin-top: 5px;
 
+}
+
+.check-size {
+    width: 150px;
 }

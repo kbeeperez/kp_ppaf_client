@@ -3,7 +3,7 @@
     width: 100%;
     height: 950px;
     z-index:100;
-    margin-top:-50px;
+    margin-top:50px;
 }
 
 .hr {
@@ -16,10 +16,6 @@
     margin-top: -40px;
     text-align: justify;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.text-title {
-    font-size: 50pt;
 }
 
 
