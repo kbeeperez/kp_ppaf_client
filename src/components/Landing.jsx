@@ -40,7 +40,7 @@ export default function Landing() {
     } else {
         return ( 
             <div className="main-con">
-                <ScrollArea h={830}>
+                <ScrollArea h={780}>
 
                 <div>
                     {/*TO-DO:
