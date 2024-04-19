@@ -1,5 +1,4 @@
-import { Container, Divider, Group, Text } from "@mantine/core"
-import { useEffect, useState } from "react"
+import { Container, Divider, Group, Text, Title} from "@mantine/core"
 
 import '../assets/styles/AboutUs.css';
 
@@ -10,13 +9,13 @@ export default function AboutUs() {
         <div align="center">
 
 
-        <h1 className="text-title"> About PPAF </h1>
+        <Title> About PPAF </Title>
 
         <Container className="box">
-        <Divider size="lg" color="black"/>
+        
         <p></p>
 
-        <Text c="black" size="lg">
+        <Text c="black" size="lg" mt={"50px"} mb={"50px"}>
         Privacy Policy Analysis (PPA) is the intelligent privacy policy summarization and analysis tool that helps you stay informed and make the best decisions for you and your data. 
         Even when privacy policies clearly spell out a companies usage of your data, they are simply too lengthy to read even if is in your best interest, but with AI assisted comprehension 
         and summarization, you can finally be in charge of your information again. Privacy protection is not only a responsibility of individuals and organizations; it is a fundamental human right enshrined in various international treaties and conventions. 
@@ -25,7 +24,7 @@ export default function AboutUs() {
         </Text>
         </Container>
 
-        <h1 className="text-title"> Meet Our Team! </h1>
+        <Title  mb={"50px"}> Meet Our Team! </Title>
 
         <Container className="box">
         <Divider size="lg" color="black"/>
