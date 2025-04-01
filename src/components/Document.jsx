@@ -4,7 +4,7 @@ import axios from "axios";
 import classes from '../assets/styles/Document.module.css';
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import moment from "moment"
+import moment from "moment";
 
 export default function Document(){
     if (localStorage.getItem("token")) {
@@ -65,6 +65,9 @@ export default function Document(){
             </Accordion.Item>
         ));
 
+        console.log('Base:', base);
+
+
         return (
             <Container size="md" mt="lg" p="md">
                 <Paper shadow="sm" mb="md" withBorder className={classes.document}>
@@ -103,11 +106,23 @@ export default function Document(){
                         <Title order={2} mb="md" c="dimmed">Details</Title>
                         <Grid columns={2}>
                             <GridCol span={1}>
-                                <Paper p="sm" shadow="xs">
-                                <Title order={4} c="dimmed" fw={400}>Collected Information Scopes</Title>
-                                <List p="xs">
-                                    {base?.scopes.map((scope=>{return <ListItem>{scope}</ListItem>}))}
+                                <Paper p="sm" shadow="xs" mb="sm">
+                                <Title order={4} fw={600}>Data Shared</Title> {/*COLLECTED INFO*/}
+                                <List p="s">
+                                {base?.shared}
                                 </List>
+                                </Paper>
+                                <Paper p="sm" shadow="xs" mb="sm">
+                                <Title order={4} fw={600}>Data Collected</Title> {/*COLLECTED INFO*/}
+                                <List p="xs">
+                                {base?.collected}
+                                    </List>
+                                </Paper>
+                                <Paper p="sm" shadow="xs" mb="sm">
+                                <Title order={4} fw={600}>Security Practices</Title> {/*COLLECTED INFO*/}
+                                <List p="xs">
+                                {base?.security}
+                                    </List>
                                 </Paper>
                             </GridCol>
                             <GridCol span={1}>
